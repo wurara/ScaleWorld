@@ -24,17 +24,12 @@ public class ItemRegistry {
     //物品對應的物品欄
     private static ItemGroup itemGroup = ModGroup.itemGroup;
     //物品注冊操作(放在物品欄中)
-    public static RegistryObject<Item> firstItem = ITEMS.register("first_item", () -> {
-        return new FirstItem();
-    });
-    public static RegistryObject<Item> snowWhiteApple = ITEMS.register("snow_white_apple", () -> {
-        return new SnowWhiteApple();
-    });
-    public static RegistryObject<Item> obsidianSword = ITEMS.register("violet_sword", () -> {
-        return new VioletSword();
-    });
-    public static RegistryObject<Item> obsidianBlock = ITEMS.register("obsidian_block", () -> {
-        return new BlockItem(BlockRegistry.oilBlock.get(), new Item.Properties().group(ModGroup.itemGroup));
-    });
+    public static RegistryObject<Item> firstItem = ITEMS.register("first_item", FirstItem::new);
+    public static RegistryObject<Item> snowWhiteApple = ITEMS.register("snow_white_apple", SnowWhiteApple::new);
+    public static RegistryObject<Item> violetSword = ITEMS.register("violet_sword", VioletSword::new);
+    //方塊注冊的同時要將對應的物品也注冊进去
+    public static RegistryObject<Item> oilBlock = ITEMS.register("oil_block", () -> new BlockItem(BlockRegistry.oilBlock.get(), new Item.Properties().group(itemGroup)));
+
+
 
 }
